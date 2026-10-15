@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudyMate | Student Portal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6ff;
+    color: #252545;
+}
+
+header {
+    background: #6558d3;
+    color: white;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 27px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 15px;
+}
+
+.hero {
+    padding: 65px 8%;
+    background: linear-gradient(135deg, #e8e5ff, #fce7f3);
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 17px;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.search-box {
+    width: min(100%, 450px);
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+section {
+    padding: 40px 8%;
+}
+
+section h2 {
+    margin-bottom: 25px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px #0000000d;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card .icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+button {
+    background: #6558d3;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #493bb0;
+}
+
+footer {
+    background: #252545;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+#message {
+    margin-top: 20px;
+    color: #6558d3;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 7px;
+        display: inline-block;
+    }
+
+    .hero h2 {
+        font-size: 29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🎓 StudyMate</h1>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#materials">Materials</a>
+        <a href="#assignments">Assignments</a>
+        <a href="#exams">Exams</a>
+    </nav>
+</header>
+
+<div class="hero" id="home">
+    <h2>Your Learning Journey Starts Here! ✨</h2>
+
+    <p>
+        Learn smarter, stay organized and achieve your goals.
+    </p>
+
+    <input
+        type="text"
+        id="search"
+        class="search-box"
+        placeholder="🔍 Search study materials..."
+        oninput="searchMaterials()"
+    >
+
+    <p id="message"></p>
+</div>
+
+<section id="materials">
+    <h2>📚 Study Materials</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📐</div>
+            <h3>Engineering Mathematics</h3>
+            <p>Organize maths notes, formulas and practice questions.</p>
+            <button onclick="showMessage('Engineering Mathematics')">
+                Explore
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">💻</div>
+            <h3>Programming in C</h3>
+            <p>Learn C programming, algorithms and coding basics.</p>
+            <button onclick="showMessage('Programming in C')">
+                Explore
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">⚡</div>
+            <h3>Basic Electrical</h3>
+            <p>Revise electrical concepts, circuits and important questions.</p>
+            <button onclick="showMessage('Basic Electrical')">
+                Explore
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">🧪</div>
+            <h3>Engineering Chemistry</h3>
+            <p>Keep chemistry notes and important topics organized.</p>
+            <button onclick="showMessage('Engineering Chemistry')">
+                Explore
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<section id="assignments">
+    <h2>📝 Assignments</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📄</div>
+            <h3>My Assignments</h3>
+            <p>Keep track of your assignment topics and deadlines.</p>
+            <button onclick="addAssignment()">
+                Add Assignment
+            </button>
+            <p id="assignmentList"></p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📖</div>
+            <h3>Project Ideas</h3>
+            <p>Collect ideas for projects and future learning.</p>
+            <button onclick="showMessage('Project Ideas')">
+                Explore
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<section id="exams">
+    <h2>🎯 Exam Preparation</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📅</div>
+            <h3>Exam Planner</h3>
+            <p>Plan your revision and remember important exam dates.</p>
+            <button onclick="addExam()">
+                Add Exam
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="icon">⏱️</div>
+            <h3>Study Timer</h3>
+            <p>Start a 25-minute study session.</p>
+            <button onclick="startTimer()" id="timerButton">
+                Start Timer
+            </button>
+            <p id="timerDisplay"></p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>Made with 💜 for students</p>
+    <p>© 2026 StudyMate</p>
+</footer>
+
+<script>
+function showMessage(subject) {
+    document.getElementById("message").textContent =
+        subject + " selected! Add your notes to this section.";
+}
+
+function searchMaterials() {
+    const input = document.getElementById("search")
+        .value.toLowerCase();
+
+    const cards = document.querySelectorAll("#materials .card");
+    let found = 0;
+
+    cards.forEach(function(card) {
+        const matches = card.textContent.toLowerCase()
+            .includes(input);
+
+        card.style.display = matches ? "" : "none";
+
+        if (matches) found++;
+    });
+
+    document.getElementById("message").textContent =
+        input === "" ? "" :
+        found + " matching subject(s) found.";
+}
+
+function addAssignment() {
+    const topic = prompt("Enter your assignment topic:");
+
+    if (topic && topic.trim()) {
+        const item = document.createElement("p");
+        item.textContent = "📌 " + topic.trim();
+
+        document.getElementById("assignmentList")
+            .appendChild(item);
+    }
+}
+
+function addExam() {
+    const exam = prompt("Enter your exam name:");
+
+    if (exam && exam.trim()) {
+        alert("Exam added to this session: " + exam.trim());
+    }
+}
+
+let timer;
+
+function startTimer() {
+    if (timer) return;
+
+    let seconds = 25 * 60;
+
+    const display = document.getElementById("timerDisplay");
+    const button = document.getElementById("timerButton");
+
+    button.textContent = "Timer Running!";
+
+    function updateTimer() {
+        const minutes = Math.floor(seconds / 60);
+        const remaining = seconds % 60;
+
+        display.textContent =
+            String(minutes).padStart(2, "0") + ":" +
+            String(remaining).padStart(2, "0");
+
+        if (seconds <= 0) {
+            clearInterval(timer);
+            timer = null;
+            button.textContent = "Start Timer";
+            display.textContent = "🎉 Study session complete!";
+            alert("Great job! Take a short break.");
+            return;
+        }
+
+        seconds--;
+    }
+
+    updateTimer();
+    timer = setInterval(updateTimer, 1000);
+}
+</script>
+
+</body>
+</html>
